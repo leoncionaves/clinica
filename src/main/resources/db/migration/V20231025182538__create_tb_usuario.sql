@@ -1,5 +1,5 @@
-CREATE TABLE usuario (
-	id bigint PRIMARY KEY NOT NULL,
+ CREATE TABLE usuarios (
+	id_usuario bigint PRIMARY KEY NOT NULL,
 	email varchar(100),
 	bairro varchar(100),
 	cep varchar(10),
@@ -11,7 +11,10 @@ CREATE TABLE usuario (
 	nome varchar(100),
 	telefone varchar(20),
 	ativo boolean DEFAULT TRUE NOT NULL,
-	data_cadastro TIMESTAMP DEFAULT NOW()
+	data_cadastro TIMESTAMP DEFAULT NOW(),
+	usuario VARCHAR(100) NOT NULL UNIQUE,
+	senha   VARCHAR(100) NOT NULL,
+	role varchar (50) NOT NULL
 );
 
 CREATE SEQUENCE public.seq_usuario

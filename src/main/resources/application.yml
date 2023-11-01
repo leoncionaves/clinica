@@ -17,6 +17,10 @@ spring:
   flyway:
     baselineOnMigrate: true
 
+  security:
+    token:
+      secret: ${JWT_SECURITY:my-security-key}
+
 #server:
  # ssl:
   #  key-alias: app_clinica
@@ -25,3 +29,5 @@ spring:
     #key-store-password: CervejaGelada
     #enable: true
   #port: 8480
+
+

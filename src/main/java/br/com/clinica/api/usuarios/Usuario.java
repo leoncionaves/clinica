@@ -38,6 +38,7 @@ public class Usuario implements UserDetails {
         this.pessoa = new Pessoa(dados.pessoa());
         this.usuario = dados.usuario();
         this.senha =  new BCryptPasswordEncoder().encode(dados.senha());
+        this.role = dados.role();
     }
 
     @Override
