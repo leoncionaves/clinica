@@ -35,4 +35,13 @@ public class Pessoa {
         this.dataCadastro = dados.dataCadastro();
         this.endereco = new Endereco(dados.endereco());
     }
+
+    public void atualizarDados(PessoaDTO dados) {
+        if (dados.nome() != null) this.nome = dados.nome();
+        if (dados.email() != null) this.email = dados.email();
+        if (dados.telefone() != null) this.telefone = dados.telefone();
+       // if (dados.ativo() != null) this.ativo = dados.ativo();
+        if (dados.dataCadastro() != null) this.dataCadastro = dados.dataCadastro();
+        if (dados.endereco() != null ) this.endereco.atualizaEndereco(dados.endereco());
+    }
 }

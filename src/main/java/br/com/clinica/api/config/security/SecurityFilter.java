@@ -1,6 +1,7 @@
-package br.com.clinica.api.usuarios;
+package br.com.clinica.api.config.security;
 
-import br.com.clinica.api.config.TokenService;
+import br.com.clinica.api.services.TokenService;
+import br.com.clinica.api.usuarios.UsuarioRepository;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -18,17 +19,18 @@ import java.io.IOException;
 public class SecurityFilter extends OncePerRequestFilter {
 
     @Autowired
-    TokenService tokenService;
+    private TokenService tokenService;
 
     @Autowired
-    UsuarioRepository usuarioRepository;
+    private UsuarioRepository usuarioRepository;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        var token = this.recoverToken(request);
+        var token = recoverToken(request);
         if (token != null) {
             var login = tokenService.validateToken(token);
             UserDetails user = usuarioRepository.findByUsuario(login);
+            System.out.print(user);
 
             var authentication = new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
             SecurityContextHolder.getContext().setAuthentication(authentication);
@@ -41,7 +43,6 @@ public class SecurityFilter extends OncePerRequestFilter {
         var authHeader = request.getHeader("Authorization");
 
         if (authHeader == null) return null;
-
-        return authHeader.replace("Bearer", "");
+        return authHeader.replace("Bearer ", "");
     }
 }

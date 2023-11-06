@@ -36,4 +36,10 @@ public class Profissional {
         this.crm = dados.crm();
         this.ativo = dados.ativo();
     }
+
+    public void atualizaCadastro (DadosAtualizacaoProfissional dados){
+        if(dados.pessoa() != null) this.pessoa.atualizarDados(dados.pessoa());
+        if (dados.crm() != null)   this.crm = dados.crm();
+        if (dados.ativo() != null) this.ativo = dados.ativo();
+    }
 }

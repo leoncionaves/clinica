@@ -1,4 +1,4 @@
-package br.com.clinica.api.config;
+package br.com.clinica.api.services;
 
 import br.com.clinica.api.usuarios.Usuario;
 import com.auth0.jwt.JWT;
@@ -39,7 +39,7 @@ public class TokenService {
                     .verify(token)
                     .getSubject();
         } catch(JWTVerificationException e){
-            return "";
+            throw new RuntimeException("Token inválido ou expirado!");
         }
     }
 

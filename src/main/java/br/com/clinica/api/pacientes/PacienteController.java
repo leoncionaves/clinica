@@ -43,8 +43,9 @@ public class PacienteController {
     }
 
     @GetMapping
-    public Page<ListaPacienteDTO> getAll(Pageable paginacao) {
-        return paciente.findAllByAtivoTrue(paginacao).map(ListaPacienteDTO::new);
+    public ResponseEntity<Page<ListaPacienteDTO>> getAll(Pageable paginacao) {
+        var page = paciente.findAllByAtivoTrue(paginacao).map(ListaPacienteDTO::new);
+        return ResponseEntity.ok(page);
         //return paciente.findAll(paginacao).map(ListaPacienteDTO::new);
     }
 

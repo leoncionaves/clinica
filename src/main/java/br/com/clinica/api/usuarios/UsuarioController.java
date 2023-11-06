@@ -1,13 +1,14 @@
 package br.com.clinica.api.usuarios;
 
-import br.com.clinica.api.config.TokenService;
+import br.com.clinica.api.services.TokenService;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -15,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 public class UsuarioController {
 
     @Autowired
-    UsuarioRepository usuarioRepository;
+    private UsuarioRepository usuarioRepository;
 
     @Autowired
     private AuthenticationManager authenticationManager;
@@ -26,11 +27,18 @@ public class UsuarioController {
     @PostMapping("/login")
     public ResponseEntity login(@RequestBody @Valid AutenticationDTO dados){
         var usernamePassword = new UsernamePasswordAuthenticationToken(dados.usuario(), dados.senha());
-        var auth = this.authenticationManager.authenticate(usernamePassword);
-        var token = tokenService.generateTocken((Usuario)  auth.getPrincipal());
-        return ResponseEntity.ok(new LoginResponseDTO(token));
+        try {
+            var auth = authenticationManager.authenticate(usernamePassword);
+            var token = tokenService.generateTocken((Usuario)  auth.getPrincipal());
+            return ResponseEntity.ok(new LoginResponseDTO(token));
+        } catch (Exception e){
+            return ResponseEntity.badRequest().build();
+        }
+
     }
     @PostMapping("/new_user")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    //@PreAuthorize("hasAuthotity('READ')")
     @Transactional
     public ResponseEntity cadastroUsuario (@RequestBody @Valid DadosCadastroUsuario dados){
         //if(this.usuarioRepository.findByUsuario(dados.usuario()) != null) return ResponseEntity.badRequest().build();
@@ -41,4 +49,5 @@ public class UsuarioController {
         return ResponseEntity.ok().build();
 
     }
+
 }
