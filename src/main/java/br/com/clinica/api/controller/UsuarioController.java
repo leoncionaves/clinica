@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 public class UsuarioController {
 
     @Autowired
-    private UsuarioRepository usuarioRepository;
+    private UsuarioRepository repository;
 
     @Autowired
     private AuthenticationManager authenticationManager;
@@ -42,9 +42,12 @@ public class UsuarioController {
     @Transactional
     public ResponseEntity cadastroUsuario (@RequestBody @Valid DadosCadastroUsuario dados){
         //if(this.usuarioRepository.findByUsuario(dados.usuario()) != null) return ResponseEntity.badRequest().build();
+        var usuario = repository.findByUsuario(dados.usuario());
+
+        if (usuario != null) return ResponseEntity.badRequest().build();
 
         Usuario novoUsuario = new Usuario(dados);
-        this.usuarioRepository.save(novoUsuario);
+        repository.save(novoUsuario);
 
         return ResponseEntity.ok().build();
 

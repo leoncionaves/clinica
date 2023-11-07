@@ -16,12 +16,12 @@ import java.util.Optional;
 public class ProfissionalController {
 
     @Autowired
-    private ProfissionalRepository profissionalRepository;
+    private ProfissionalRepository repository;
 
     @PostMapping
     @Transactional
     public Profissional create(@RequestBody @Valid DadosCadastroProfissional dados) {
-        return profissionalRepository.save(new Profissional(dados));
+        return repository.save(new Profissional(dados));
     }
 
     //Retorno sem paginação
@@ -33,20 +33,20 @@ public class ProfissionalController {
     //Retorno por paginação
     @GetMapping
     public ResponseEntity<Page<ListaProfissionalDTO>> getAll(Pageable paginacao) {
-        var list = profissionalRepository.findAllByAtivoTrue(paginacao).map(ListaProfissionalDTO::new);
+        var list = repository.findAllByAtivoTrue(paginacao).map(ListaProfissionalDTO::new);
         return ResponseEntity.ok(list);
     }
 
 
     @GetMapping("/detalhe_profissional/{id}")
     public Optional<Profissional> getId(@RequestParam("id") Long id) {
-        return profissionalRepository.findById(id);
+        return repository.findById(id);
     }
 
     @PutMapping
     @Transactional
     public ResponseEntity update(@RequestBody @Valid DadosAtualizacaoProfissional dados) {
-        var profissional = profissionalRepository.getReferenceById(dados.id());
+        var profissional = repository.getReferenceById(dados.id());
         profissional.atualizaCadastro(dados);
         return ResponseEntity.ok().build();
     }
@@ -54,7 +54,9 @@ public class ProfissionalController {
     @DeleteMapping
     @Transactional
     public ResponseEntity deleteId(@RequestParam("id") Long id) {
-        profissionalRepository.deleteById(id);
+
+        var profissional = repository.getReferenceById(id);
+        repository.deleteById(id);
         return ResponseEntity.noContent().build();
     }
 

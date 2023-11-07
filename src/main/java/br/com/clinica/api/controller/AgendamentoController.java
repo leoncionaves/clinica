@@ -18,14 +18,14 @@ import java.util.List;
 public class AgendamentoController {
 
     @Autowired
-    private AgendamentoRepository agendamento;
+    private AgendamentoRepository repository;
 
 
     @PostMapping
     @Transactional
     public Agendamento criarAgendamento(Long idProfissional, Long idPaciente, String dataAgendamento, String horaAgendamento, String observacao) {
         Agendamento agenda = new Agendamento(null, idProfissional, idPaciente, LocalDate.parse(dataAgendamento, DateTimeFormatter.ofPattern("yyyy-MM-dd")), LocalTime.parse(horaAgendamento, DateTimeFormatter.ofPattern("HH:mm:ss")), false, observacao);
-        return agendamento.save(agenda);
+        return repository.save(agenda);
     }
 
 
@@ -38,26 +38,29 @@ public class AgendamentoController {
     @DeleteMapping("/{id}")
     @Transactional
     public ResponseEntity deleteId(@RequestParam("id") Long id) {
-        agendamento.deleteById(id);
+        repository.deleteById(id);
         return ResponseEntity.noContent().build();
     }
 
     @GetMapping("/agenda_profissional/{id}{data}")
-    public List<Agendamento> getAgendaProfissional(Pageable paginacao, @RequestParam("id") Long id,@RequestParam("data") LocalDate data) {
-        if (data == null ){data = LocalDate.now();}
-        return agendamento.findByIdProfissionalandData(id, data, paginacao).stream().toList();
+    public ResponseEntity<List<Agendamento>> getAgendaProfissional(Pageable paginacao, @RequestParam("id") Long id,@RequestParam("data") LocalDate data) {
+        if (data == null ) data = LocalDate.now();
+        var agenda = repository.findByIdProfissionalandData(id, data, paginacao).stream().toList();
+        return ResponseEntity.ok(agenda);
 
     }
 
     @GetMapping("/agenda_paciente/{id}")
     public List<Agendamento> getAgendaProfissional(Pageable paginacao, @RequestParam("id") Long id) {
-        return agendamento.findByIdPaciente(id, paginacao).stream().toList();
+        return repository.findByIdPaciente(id, paginacao).stream().toList();
 
     }
 
-    @GetMapping("/agenda_data/{data}")
-    public List<Agendamento> getId(Pageable paginacao, @RequestParam("data") LocalDate data) {
-        return agendamento.findByDataAgendamento(data, paginacao).stream().toList();
+    @GetMapping("/agenda_data")
+    public ResponseEntity<List<Agendamento>> getId(@RequestParam("data") LocalDate data, Pageable paginacao) {
+        if (data == null ) data = LocalDate.now();
+        var agenamento = repository.findByDataAgendamento(data, paginacao).stream().toList()
+        return ResponseEntity.ok(new AgendamentoData(agenamento));
     }
 
 }
