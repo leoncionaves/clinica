@@ -1,6 +1,7 @@
 package br.com.clinica.api.domain.agenda;
 
 
+import br.com.clinica.api.domain.agenda.DTOs.DadosAgendamentoDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -35,21 +36,22 @@ public class Agendamento {
    // @JoinColumn(name = "idPaciente", nullable = false, referencedColumnName = "id")
     private Long idPaciente;
 
-    private LocalDate dataAgendamento;
+    private LocalDate data;
 
-    private LocalTime horaAgendamento;
+    private LocalTime hora;
 
     private Boolean confirmada;
 
     private String observacao;
 
 
-    /*public Agendamento(){
+    public Agendamento(DadosAgendamentoDTO dados){
         this.idProfissional = dados.idProfissional();
         this.idPaciente = dados.idPaciente();
-        this.dataAgendamento = dados.dataAgendamento();
-        this.horaAgendamento = dados.horaAgendamento();
+        this.data = dados.data();
+        this.hora = dados.hora();
         this.observacao = dados.observacao();
-    }*/
+        this.confirmada = dados.confirmada();
+    }
 
 }
