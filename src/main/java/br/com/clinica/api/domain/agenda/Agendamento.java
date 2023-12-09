@@ -2,6 +2,8 @@ package br.com.clinica.api.domain.agenda;
 
 
 import br.com.clinica.api.domain.agenda.DTOs.DadosAgendamentoDTO;
+import br.com.clinica.api.domain.pacientes.Paciente;
+import br.com.clinica.api.domain.profissionais.Profissional;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -26,15 +28,13 @@ public class Agendamento {
     private Long id;
 
 
-    //@ManyToOne(fetch = FetchType.EAGER)
-    //@JoinTable(name = "profissionais", joinColumns = @JoinColumn(name = "id"))
-    //@JoinColumn(name = "idProfissional", nullable = false, referencedColumnName = "id")
-    private Long idProfissional;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_profissional")
+    private Profissional idProfissional;
 
-   // @ManyToOne(fetch = FetchType.EAGER)
-    //@JoinTable(name = "pacientes", joinColumns = @JoinColumn(name = "id"))
-   // @JoinColumn(name = "idPaciente", nullable = false, referencedColumnName = "id")
-    private Long idPaciente;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_paciente")
+    private Paciente idPaciente;
 
     private LocalDate data;
 
@@ -43,15 +43,4 @@ public class Agendamento {
     private Boolean confirmada;
 
     private String observacao;
-
-
-    public Agendamento(DadosAgendamentoDTO dados){
-        this.idProfissional = dados.idProfissional();
-        this.idPaciente = dados.idPaciente();
-        this.data = dados.data();
-        this.hora = dados.hora();
-        this.observacao = dados.observacao();
-        this.confirmada = dados.confirmada();
-    }
-
 }

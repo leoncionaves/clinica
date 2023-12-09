@@ -1,0 +1,10 @@
+spring:
+  jpa:
+    database: POSTGRESQL
+    show-sql: false
+
+  datasource:
+    url: ${DATASORCE_URL}
+    username: ${DATASORCE_USER}
+    password: ${DATASORCE_PWD}
+

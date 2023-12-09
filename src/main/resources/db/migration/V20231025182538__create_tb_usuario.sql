@@ -24,3 +24,4 @@ CREATE SEQUENCE public.seq_usuario
 	START 1
 	CACHE 1
 	NO CYCLE;
+

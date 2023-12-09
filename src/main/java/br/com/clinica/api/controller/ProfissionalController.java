@@ -1,6 +1,7 @@
 package br.com.clinica.api.controller;
 
 import br.com.clinica.api.domain.profissionais.*;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -13,6 +14,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("profissionais")
+@SecurityRequirement(name = "bearer-key")
 public class ProfissionalController {
 
     @Autowired
@@ -39,8 +41,9 @@ public class ProfissionalController {
 
 
     @GetMapping("/detalhe_profissional/{id}")
-    public Optional<Profissional> getId(@RequestParam("id") Long id) {
-        return repository.findById(id);
+    public ResponseEntity getId(@PathVariable Long id) {
+        var profissional = repository.getReferenceById(id);
+        return ResponseEntity.ok(new DetalheCadstroProfissional(profissional));
     }
 
     @PutMapping

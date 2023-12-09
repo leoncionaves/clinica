@@ -2,13 +2,13 @@ spring:
   jpa:
     database: POSTGRESQL
     show-sql: true
-    #properties:
-     # hibernate:
-      #  format_sql: true
+    properties:
+      hibernate:
+        format_sql: true
 
   datasource:
     #platform: postgres
-    url: jdbc:postgresql://192.168.15.15:5432/clinica
+    url: jdbc:postgresql://172.16.238.10:5432/clinica
     username: postgres
     password: postgres
     driverClassName: org.postgresql.Driver
@@ -20,16 +20,6 @@ spring:
     token:
       secret: ${JWT_SECURITY:my-security-key}
 
-
-
-#server:
- # ssl:
-  #  key-alias: app_clinica
-   # key-store: classpath:appclinica.p12
-    #key-store-type: PKCS12
-    #key-store-password: CervejaGelada
-    #enable: true
-  #port: 8480
 server:
   error:
     include-stacktrace: never
