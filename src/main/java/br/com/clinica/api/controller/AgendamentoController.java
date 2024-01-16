@@ -1,20 +1,17 @@
 package br.com.clinica.api.controller;
 
 
-import br.com.clinica.api.domain.agenda.services.AgendarService;
 import br.com.clinica.api.domain.agenda.AgendamentoRepository;
 import br.com.clinica.api.domain.agenda.DTOs.DadosAgendamentoDTO;
+import br.com.clinica.api.domain.agenda.services.AgendarService;
 import br.com.clinica.api.domain.agenda.services.ListarAgendamentos;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
-
-import java.time.LocalDate;
 
 @RestController
 @RequestMapping("/agendamentos")
@@ -39,31 +36,31 @@ public class AgendamentoController {
     }
 
 
-    @GetMapping("/agenda_profissional/{id}{data}")
-    public ResponseEntity agendaProfissional(Pageable paginacao, @RequestParam("id") Long id, @RequestParam("data") LocalDate data) {
-        var agenda = lista.listaAgendaProfissional(id, data, paginacao).stream().toList();
-        return ResponseEntity.ok(agenda);
-
-    }
-
-    @GetMapping("/agenda_paciente/{id}{data}")
-    public ResponseEntity agendaPaciente(Pageable paginacao, @RequestParam("id") Long id, @RequestParam("data") LocalDate data) {
-        var agenda = lista.listaAgendaPaciente(id, data, paginacao).stream().toList();
-        return ResponseEntity.ok(agenda);
-
-    }
-
-    @GetMapping("/agenda_data")
-    public ResponseEntity agendaData(@RequestParam("data") LocalDate data, Pageable paginacao) {
-        var agenda = lista.listaAgendaData(data, paginacao).stream().toList();
-        return ResponseEntity.ok(agenda);
-    }
-
-    @GetMapping("/detalhe_agenda/{id}")
-    public ResponseEntity detalheAgenda(@PathVariable Long id) {
-        var agenda = repository.findByidAgenda(id);
-        return ResponseEntity.ok(agenda);
-    }
+//    @GetMapping("/agenda_profissional/{id}{data}")
+//    public ResponseEntity agendaProfissional(Pageable paginacao, @RequestParam("id") Long id, @RequestParam("data") LocalDate data) {
+//        var agenda = lista.listaAgendaProfissional(id, data, paginacao).stream().toList();
+//        return ResponseEntity.ok(agenda);
+//
+//    }
+//
+//    @GetMapping("/agenda_paciente/{id}{data}")
+//    public ResponseEntity agendaPaciente(Pageable paginacao, @RequestParam("id") Long id, @RequestParam("data") LocalDate data) {
+//        var agenda = lista.listaAgendaPaciente(id, data, paginacao).stream().toList();
+//        return ResponseEntity.ok(agenda);
+//
+//    }
+//
+//    @GetMapping("/agenda_data")
+//    public ResponseEntity agendaData(@RequestParam("data") LocalDate data, Pageable paginacao) {
+//        var agenda = lista.listaAgendaData(data, paginacao).stream().toList();
+//        return ResponseEntity.ok(agenda);
+//    }
+//
+//    @GetMapping("/detalhe_agenda/{id}")
+//    public ResponseEntity detalheAgenda(@PathVariable Long id) {
+//        var agenda = repository.findByidAgenda(id);
+//        return ResponseEntity.ok(agenda);
+//    }
 /*
     @PutMapping
     @Transactional

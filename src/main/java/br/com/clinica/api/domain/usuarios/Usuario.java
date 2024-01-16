@@ -21,21 +21,22 @@ import java.util.List;
 @AllArgsConstructor
 @EqualsAndHashCode(of = "idUsuario")
 
-public class Usuario implements UserDetails {
+public class Usuario extends Pessoa implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_usuario")
     @SequenceGenerator(name = "seq_usuario", sequenceName = "seq_usuario", initialValue = 1, allocationSize = 1)
     private Long idUsuario;
 
-    @Embedded
-    private Pessoa pessoa;
+//    @Embedded
+//    private Pessoa pessoa;
     private String usuario;
     private String senha;
     private Roles role;
 
     public Usuario(DadosCadastroUsuario dados) {
-        this.pessoa = new Pessoa(dados.pessoa());
+        //this.pessoa = new Pessoa(dados.pessoa());
+        super(dados.pessoa());
         this.usuario = dados.usuario();
         this.senha =  new BCryptPasswordEncoder().encode(dados.senha());
         this.role = dados.role();

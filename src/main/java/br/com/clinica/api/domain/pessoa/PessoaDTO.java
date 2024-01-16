@@ -5,7 +5,7 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public record PessoaDTO(
         @NotBlank
@@ -18,8 +18,8 @@ public record PessoaDTO(
         @Valid
         DadosEndereco endereco,
 
-        //Boolean ativo,
+        Boolean ativo,
 
-        Date dataCadastro
+        LocalDate dataCadastro
         ) {
 }

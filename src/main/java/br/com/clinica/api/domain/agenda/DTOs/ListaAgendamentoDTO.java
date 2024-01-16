@@ -1,6 +1,5 @@
 package br.com.clinica.api.domain.agenda.DTOs;
 
-import br.com.clinica.api.domain.agenda.Agendamento;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -19,9 +18,9 @@ public class ListaAgendamentoDTO {
     private LocalTime hora;
     private Boolean confirmada;
 
-    public ListaAgendamentoDTO(Long id, String profissiona, String paciente, LocalDate data, LocalTime hora, Boolean confirmada) {
+    public ListaAgendamentoDTO(Long id, String profissional, String paciente, LocalDate data, LocalTime hora, Boolean confirmada) {
         this.id = id;
-        this.profissional = profissiona;
+        this.profissional = profissional;
         this.paciente = paciente;
         this.data = data;
         this.hora = hora;

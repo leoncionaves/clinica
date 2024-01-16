@@ -1,21 +1,10 @@
 package br.com.clinica.api.domain.agenda.services;
 
-import br.com.clinica.api.domain.agenda.AgendamentoRepository;
-import br.com.clinica.api.domain.agenda.DTOs.AgendaDetalheDTO;
-import br.com.clinica.api.domain.agenda.DTOs.ListaAgendamentoDTO;
-import br.com.clinica.api.domain.pacientes.PacienteRepository;
-import br.com.clinica.api.domain.profissionais.ProfissionalRepository;
-import br.com.clinica.api.infra.exception.ValidarExcecoes;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import java.time.LocalDate;
 
 @Service
 public class ListarAgendamentos {
-
+/*
     @Autowired
     private AgendamentoRepository agendamentoRepository;
     @Autowired
@@ -46,5 +35,5 @@ public class ListarAgendamentos {
 
     public AgendaDetalheDTO detalheAgenda(Long id) {
         return agendamentoRepository.findByidAgenda(id);
-    }
+    }*/
 }

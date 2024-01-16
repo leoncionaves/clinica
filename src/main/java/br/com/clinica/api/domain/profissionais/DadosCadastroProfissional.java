@@ -12,5 +12,5 @@ public record DadosCadastroProfissional(
 
         @NotBlank
         @Pattern(regexp = "\\d{4,6}")
-        String crm,
-        Boolean ativo) {}
+        String crm
+      ) {}

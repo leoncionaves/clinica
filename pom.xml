@@ -5,12 +5,12 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.2.0</version>
+        <version>3.2.1</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>br.com.clinica</groupId>
     <artifactId>api</artifactId>
-    <version>0.0.1-BETA</version>
+    <version>0.0.4-BETA</version>
     <name>Clinicia</name>
     <description>API Rest Clinica</description>
     <properties>
@@ -76,6 +76,11 @@
             <groupId>com.auth0</groupId>
             <artifactId>java-jwt</artifactId>
             <version>4.4.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-amqp</artifactId>
         </dependency>
 
     </dependencies>

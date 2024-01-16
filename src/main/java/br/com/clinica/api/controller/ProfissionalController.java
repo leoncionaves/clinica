@@ -4,12 +4,9 @@ import br.com.clinica.api.domain.profissionais.*;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
-import java.util.Optional;
 
 
 @RestController
@@ -33,11 +30,11 @@ public class ProfissionalController {
 //    }
 
     //Retorno por paginação
-    @GetMapping
-    public ResponseEntity<Page<ListaProfissionalDTO>> getAll(Pageable paginacao) {
-        var list = repository.findAllByAtivoTrue(paginacao).map(ListaProfissionalDTO::new);
-        return ResponseEntity.ok(list);
-    }
+//    @GetMapping
+//    public ResponseEntity<Page<ListaProfissionalDTO>> getAll(Pageable paginacao) {
+//        var list = repository.findAllByAtivoTrue(paginacao).map(ListaProfissionalDTO::new);
+//        return ResponseEntity.ok(list);
+//    }
 
 
     @GetMapping("/detalhe_profissional/{id}")

@@ -8,7 +8,8 @@ spring:
 
   datasource:
     #platform: postgres
-    url: jdbc:postgresql://192.168.15.15:5432/clinica
+   # url: jdbc:postgresql://192.168.15.15:5432/clinica
+    url: jdbc:postgresql://172.16.238.10:5432/clinica
     username: postgres
     password: postgres
     driverClassName: org.postgresql.Driver
@@ -20,7 +21,11 @@ spring:
     token:
       secret: ${JWT_SECURITY:my-security-key}
 
-
+  rabbitmq:
+    host: 172.16.238.12
+    port: 5672
+    username: admin
+    password: admin
 
 #server:
  # ssl:
