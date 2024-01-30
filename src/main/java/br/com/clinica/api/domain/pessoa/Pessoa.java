@@ -1,20 +1,24 @@
 package br.com.clinica.api.domain.pessoa;
 
-import jakarta.persistence.Embedded;
-import jakarta.persistence.Inheritance;
-import jakarta.persistence.InheritanceType;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-//@Embeddable
+@Entity
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-public class Pessoa {
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+public abstract class Pessoa implements Serializable {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_pessoa")
+    @SequenceGenerator(name = "seq_pessoa", sequenceName = "seq_pessoa", initialValue = 1, allocationSize = 1)
+    private Long id;
 
     private String nome;
 

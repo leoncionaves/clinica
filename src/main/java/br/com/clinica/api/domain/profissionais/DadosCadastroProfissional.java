@@ -8,9 +8,9 @@ import jakarta.validation.constraints.Pattern;
 public record DadosCadastroProfissional(
         PessoaDTO pessoa,
         @NotNull
-        Especialidade especialidade,
+        Long idEspecialidade,
 
         @NotBlank
         @Pattern(regexp = "\\d{4,6}")
-        String crm
+        String registroConselho
       ) {}

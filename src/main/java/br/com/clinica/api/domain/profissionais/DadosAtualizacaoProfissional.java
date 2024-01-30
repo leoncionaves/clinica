@@ -1,5 +1,6 @@
 package br.com.clinica.api.domain.profissionais;
 
+import br.com.clinica.api.domain.especialidade.Especialidade;
 import br.com.clinica.api.domain.pessoa.PessoaDTO;
 
 public record DadosAtualizacaoProfissional(
@@ -11,6 +12,6 @@ public record DadosAtualizacaoProfissional(
 
         //@NotBlank
         //@Pattern(regexp = "\\d{4,6}")
-        String crm,
+        String registroConselho,
         Boolean ativo) {
 }

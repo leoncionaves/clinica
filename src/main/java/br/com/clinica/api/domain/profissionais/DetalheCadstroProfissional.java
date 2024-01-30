@@ -1,12 +1,16 @@
 package br.com.clinica.api.domain.profissionais;
 
-public record DetalheCadstroProfissional(Long id, String pessoa, Especialidade especialidade, String crm, Boolean ativo) {
+import br.com.clinica.api.domain.especialidade.Especialidade;
+
+import java.util.ArrayList;
+
+public record DetalheCadstroProfissional(Long id, String pessoa, ArrayList<Especialidade> especialidade, String crm, Boolean ativo) {
 
     public DetalheCadstroProfissional(Profissional profissional) {
         this(profissional.getId(),
                 profissional.getNome(),
-                profissional.getEspecialidade(),
-                profissional.getCrm(),
+                profissional.getEspecialidadeList(),
+                profissional.getRegistroConselho(),
                 profissional.getAtivo());
     }
 }

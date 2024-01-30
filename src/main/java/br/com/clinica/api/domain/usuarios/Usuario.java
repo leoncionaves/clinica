@@ -1,7 +1,9 @@
 package br.com.clinica.api.domain.usuarios;
 
 import br.com.clinica.api.domain.pessoa.Pessoa;
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.SequenceGenerator;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -20,22 +22,19 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "idUsuario")
-
+@SequenceGenerator(name = "seq_paciente", sequenceName = "seq_paciente", initialValue = 1, allocationSize = 1)
 public class Usuario extends Pessoa implements UserDetails {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_usuario")
-    @SequenceGenerator(name = "seq_usuario", sequenceName = "seq_usuario", initialValue = 1, allocationSize = 1)
-    private Long idUsuario;
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_usuario")
+//    @SequenceGenerator(name = "seq_usuario", sequenceName = "seq_usuario", initialValue = 1, allocationSize = 1)
+//    private Long idUsuario;
 
-//    @Embedded
-//    private Pessoa pessoa;
     private String usuario;
     private String senha;
     private Roles role;
 
     public Usuario(DadosCadastroUsuario dados) {
-        //this.pessoa = new Pessoa(dados.pessoa());
         super(dados.pessoa());
         this.usuario = dados.usuario();
         this.senha =  new BCryptPasswordEncoder().encode(dados.senha());

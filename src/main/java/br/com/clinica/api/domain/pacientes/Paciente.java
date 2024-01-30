@@ -1,7 +1,9 @@
 package br.com.clinica.api.domain.pacientes;
 
 import br.com.clinica.api.domain.pessoa.Pessoa;
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.SequenceGenerator;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -15,12 +17,13 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
+@SequenceGenerator(name = "seq_paciente", sequenceName = "seq_paciente", initialValue = 1, allocationSize = 1)
 public class Paciente extends Pessoa {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_paciente")
-    @SequenceGenerator(name = "seq_paciente", sequenceName = "seq_paciente", initialValue = 1, allocationSize = 1)
-    private Long id;
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_paciente")
+//    @SequenceGenerator(name = "seq_paciente", sequenceName = "seq_paciente", initialValue = 1, allocationSize = 1)
+//    private Long idPaciente;
 
     private LocalDate dataNascimento;
     private String sexo;
