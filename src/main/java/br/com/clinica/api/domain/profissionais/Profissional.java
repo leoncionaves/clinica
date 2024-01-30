@@ -8,7 +8,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.util.ArrayList;
+import java.util.List;
 
 @Table(name = "profissionais")
 @Entity(name = "Profissionais")
@@ -25,11 +25,11 @@ public class Profissional extends Pessoa {
 //    private Long idProfissional;
 
 //    @Enumerated(EnumType.STRING)
-@ManyToMany(fetch = FetchType.EAGER)
-@JoinTable(name = "profissional_especialidade",
-        joinColumns = @JoinColumn(name = "id_profissional"),
-        inverseJoinColumns = @JoinColumn(name = "id_especialidade"))
-    private ArrayList<Especialidade> especialidadeList;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "profissional_especialidade",
+            joinColumns = @JoinColumn(name = "id_profissional"),
+            inverseJoinColumns = @JoinColumn(name = "id_especialidade"))
+    private List<Especialidade> especialidadeList;
 
     private String registroConselho;
 

@@ -1,12 +1,13 @@
 package br.com.clinica.api.domain.especialidade;
 
 import br.com.clinica.api.domain.profissionais.Profissional;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.util.ArrayList;
+import java.util.List;
 
 @Table(name = "especialidades")
 @Entity(name = "Especialidades")
@@ -23,7 +24,8 @@ public class Especialidade {
     private String especialidade;
 
     @ManyToMany(mappedBy = "especialidadeList", fetch = FetchType.EAGER)
-    private ArrayList<Profissional> profissionalList;
+    @JsonIgnore
+    private List<Profissional> profissionalList;
 
     public Especialidade(DadosCadastroEspecialidade dados) {
         this.id = dados.idEspecialidade();

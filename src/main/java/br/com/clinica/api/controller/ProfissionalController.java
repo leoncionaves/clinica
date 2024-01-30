@@ -39,8 +39,13 @@ public class ProfissionalController {
 
     @GetMapping("/detalhe_profissional/{id}")
     public ResponseEntity getId(@PathVariable Long id) {
-        var profissional = repository.getReferenceById(id);
-        return ResponseEntity.ok(new DetalheCadstroProfissional(profissional));
+        if (id != null) {
+            var profissional = repository.getReferenceById(id);
+            return ResponseEntity.ok(new DetalheCadstroProfissional(profissional));
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+
     }
 
     @PutMapping
