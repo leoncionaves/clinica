@@ -2,6 +2,8 @@ package br.com.clinica.api.domain.profissionais;
 
 import br.com.clinica.api.domain.especialidade.Especialidade;
 import br.com.clinica.api.domain.pessoa.Pessoa;
+import br.com.clinica.api.domain.profissionais.DTOs.DadosAtualizacaoProfissional;
+import br.com.clinica.api.domain.profissionais.DTOs.DadosCadastroProfissional;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -35,13 +37,27 @@ public class Profissional extends Pessoa {
 
     public Profissional(DadosCadastroProfissional dados) {
         super(dados.pessoa());
-        //this.idEspecialidade = dados.idEspecialidade();
+        //this.especialidadeList = dados.idEspecialidade();
         this.registroConselho = dados.registroConselho();
     }
 
+    public Profissional(DadosCadastroProfissional dados,  List<Especialidade> especialidades) {
+        super(dados.pessoa());
+        this.especialidadeList = especialidades;
+        this.registroConselho = dados.registroConselho();
+    }
     public void atualizaCadastro (DadosAtualizacaoProfissional dados){
         if(dados.pessoa() != null) super.atualizarDados(dados.pessoa());
         if (dados.registroConselho() != null)   this.registroConselho = dados.registroConselho();
+    }
+
+    public void salvarProfissionalEspecialidade() {
+        for (Especialidade especialidade : especialidadeList) {
+            // Crie uma entrada na tabela de junção para cada especialidade associada
+            // Certifique-se de que as especialidades já foram persistidas antes de chamar este método
+            // Aqui, "this" se refere ao Profissional atual
+            especialidade.adicionarProfissional(this);
+        }
     }
 
 }

@@ -1,6 +1,11 @@
 package br.com.clinica.api.controller;
 
-import br.com.clinica.api.domain.profissionais.*;
+import br.com.clinica.api.domain.profissionais.DTOs.DadosAtualizacaoProfissional;
+import br.com.clinica.api.domain.profissionais.DTOs.DadosCadastroProfissional;
+import br.com.clinica.api.domain.profissionais.DTOs.DetalheCadstroProfissional;
+import br.com.clinica.api.domain.profissionais.Profissional;
+import br.com.clinica.api.domain.profissionais.ProfissionalRepository;
+import br.com.clinica.api.domain.profissionais.service.CadastroProfissionalService;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,10 +22,14 @@ public class ProfissionalController {
     @Autowired
     private ProfissionalRepository repository;
 
+    @Autowired
+    private CadastroProfissionalService service;
+
     @PostMapping
     @Transactional
     public Profissional create(@RequestBody @Valid DadosCadastroProfissional dados) {
-        return repository.save(new Profissional(dados));
+        ;
+        return service.cadastrar(dados);
     }
 
     //Retorno sem paginação

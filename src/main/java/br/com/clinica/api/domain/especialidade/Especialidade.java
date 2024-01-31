@@ -3,6 +3,7 @@ package br.com.clinica.api.domain.especialidade;
 import br.com.clinica.api.domain.profissionais.Profissional;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,7 +15,6 @@ import java.util.List;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@Embeddable
 public class Especialidade {
 
     @Id
@@ -30,5 +30,12 @@ public class Especialidade {
     public Especialidade(DadosCadastroEspecialidade dados) {
         this.id = dados.idEspecialidade();
         this.especialidade = dados.especialidade();
+    }
+
+    @Transactional
+    public void adicionarProfissional(Profissional profissional) {
+        // Crie uma entrada na tabela de junção para associar esta especialidade ao profissional
+        this.getProfissionalList().add(profissional);
+        profissional.getEspecialidadeList().add(this);
     }
 }
