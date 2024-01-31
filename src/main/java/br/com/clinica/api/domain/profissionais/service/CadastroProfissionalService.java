@@ -23,21 +23,6 @@ public class CadastroProfissionalService {
 
 
     public Profissional cadastrar (DadosCadastroProfissional dados){
-    //DetalheCadstroProfissional cadastrar (DadosCadastroProfissional dados){
-        /*
-         * Espaço para validações/regras de negócio
-         *
-
-        validador.forEach(v-> v.validar(dados));
-
-        var profissional = profissionalRepository.getReferenceById(dados.idProfissional());
-        var paciente = pacienteRepository.getReferenceById(dados.idPaciente());
-        var agendamento = new Agendamento(null, profissional, paciente, dados.data(), dados.hora(),dados.confirmada(), dados.observacao());
-        agendamentoRepository.save(agendamento);
-        return new AgendaDetalheDTO(agendamento);*/
-
-        //List<Long> idEspecialidade = dados.idEspecialidade();
-
 
             List<Especialidade> listEspecialidade= new ArrayList<>();
 
@@ -46,10 +31,9 @@ public class CadastroProfissionalService {
                     var especialidade = especialidadeRepository.findById(id).orElse(null);
                     listEspecialidade.add(especialidade);
                 } else {
-                    throw new ValidarExcecoes("ID " + id + " NÃO existe na tabela especialidade.");
+                    throw new ValidarExcecoes("ID " + id + " Não existe na tabela especialidade.");
                 }
             }
-
             return profissionalRepository.save(new Profissional(dados, listEspecialidade));
     }
 

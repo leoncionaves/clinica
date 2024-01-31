@@ -53,9 +53,6 @@ public class Profissional extends Pessoa {
 
     public void salvarProfissionalEspecialidade() {
         for (Especialidade especialidade : especialidadeList) {
-            // Crie uma entrada na tabela de junção para cada especialidade associada
-            // Certifique-se de que as especialidades já foram persistidas antes de chamar este método
-            // Aqui, "this" se refere ao Profissional atual
             especialidade.adicionarProfissional(this);
         }
     }

@@ -34,7 +34,6 @@ public class Especialidade {
 
     @Transactional
     public void adicionarProfissional(Profissional profissional) {
-        // Crie uma entrada na tabela de junção para associar esta especialidade ao profissional
         this.getProfissionalList().add(profissional);
         profissional.getEspecialidadeList().add(this);
     }
