@@ -1,10 +1,10 @@
 package br.com.clinica.api.domain.profissionais.service;
 
-import br.com.clinica.api.domain.especialidade.Especialidade;
-import br.com.clinica.api.domain.especialidade.EspecialidadeRepository;
 import br.com.clinica.api.domain.profissionais.DTOs.DadosCadastroProfissional;
 import br.com.clinica.api.domain.profissionais.Profissional;
 import br.com.clinica.api.domain.profissionais.ProfissionalRepository;
+import br.com.clinica.api.domain.profissionais.especialidade.Especialidade;
+import br.com.clinica.api.domain.profissionais.especialidade.EspecialidadeRepository;
 import br.com.clinica.api.infra.exception.ValidarExcecoes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

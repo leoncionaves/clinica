@@ -1,4 +1,4 @@
-package br.com.clinica.api.domain.especialidade;
+package br.com.clinica.api.domain.profissionais.especialidade;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

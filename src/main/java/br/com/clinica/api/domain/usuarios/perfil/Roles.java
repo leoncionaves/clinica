@@ -1,4 +1,4 @@
-package br.com.clinica.api.domain.usuarios;
+package br.com.clinica.api.domain.usuarios.perfil;
 
 public enum Roles {
     ADMIN("admin"),

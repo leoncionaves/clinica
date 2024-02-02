@@ -1,6 +1,10 @@
 package br.com.clinica.api.controller;
 
-import br.com.clinica.api.domain.usuarios.*;
+import br.com.clinica.api.domain.usuarios.DTOs.AutenticationDTO;
+import br.com.clinica.api.domain.usuarios.DTOs.DadosCadastroUsuario;
+import br.com.clinica.api.domain.usuarios.DTOs.LoginResponseDTO;
+import br.com.clinica.api.domain.usuarios.Usuario;
+import br.com.clinica.api.domain.usuarios.UsuarioRepository;
 import br.com.clinica.api.infra.security.TokenService;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.transaction.Transactional;
@@ -10,7 +14,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/usuarios")

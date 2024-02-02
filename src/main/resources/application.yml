@@ -1,20 +1,23 @@
 spring:
+  profiles:
+    active: ${SPRING_AMB}
   application:
     name: appclinica
   jpa:
     database: POSTGRESQL
     show-sql: true
-    #properties:
-     # hibernate:
-      #  format_sql: true
+    properties:
+      hibernate:
+        format_sql: true
 
-  datasource:
+
+  #datasource:
     #platform: postgres
-    url: jdbc:postgresql://192.168.15.15:5432/clinica
+   # url: jdbc:postgresql://192.168.15.15:5432/clinica
     #url: jdbc:postgresql://172.16.238.10:5432/clinica
-    username: postgres
-    password: postgres
-    driverClassName: org.postgresql.Driver
+    #username: postgres
+    #password: postgres
+    #driverClassName: org.postgresql.Driver
 
   flyway:
     baselineOnMigrate: true

@@ -1,8 +1,8 @@
 package br.com.clinica.api.domain.profissionais.DTOs;
 
-import br.com.clinica.api.domain.especialidade.Especialidade;
 import br.com.clinica.api.domain.pessoa.Endereco;
 import br.com.clinica.api.domain.profissionais.Profissional;
+import br.com.clinica.api.domain.profissionais.especialidade.Especialidade;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.util.List;

@@ -1,0 +1,18 @@
+spring:
+  jpa:
+    database: POSTGRESQL
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+  datasource:
+    #platform: postgres
+    url: jdbc:postgresql://192.168.15.15:5432/clinica
+    username: postgres
+    password: postgres
+    driverClassName: org.postgresql.Driver
+
+# Configurações específicas para o ambiente de desenvolvimento
+
+# Restante das configurações comuns

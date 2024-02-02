@@ -1,6 +1,7 @@
-package br.com.clinica.api.domain.especialidade;
+package br.com.clinica.api.domain.profissionais.especialidade;
 
 import br.com.clinica.api.domain.profissionais.Profissional;
+import br.com.clinica.api.domain.profissionais.especialidade.DTOs.DadosCadastroEspecialidade;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.transaction.Transactional;

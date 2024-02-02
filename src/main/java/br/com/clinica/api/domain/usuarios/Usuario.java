@@ -1,6 +1,8 @@
 package br.com.clinica.api.domain.usuarios;
 
 import br.com.clinica.api.domain.pessoa.Pessoa;
+import br.com.clinica.api.domain.usuarios.DTOs.DadosCadastroUsuario;
+import br.com.clinica.api.domain.usuarios.perfil.Roles;
 import jakarta.persistence.Entity;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
@@ -24,11 +26,6 @@ import java.util.List;
 @EqualsAndHashCode(of = "idUsuario")
 @SequenceGenerator(name = "seq_paciente", sequenceName = "seq_paciente", initialValue = 1, allocationSize = 1)
 public class Usuario extends Pessoa implements UserDetails {
-
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_usuario")
-//    @SequenceGenerator(name = "seq_usuario", sequenceName = "seq_usuario", initialValue = 1, allocationSize = 1)
-//    private Long idUsuario;
 
     private String usuario;
     private String senha;

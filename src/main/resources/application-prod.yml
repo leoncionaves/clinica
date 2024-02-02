@@ -4,7 +4,13 @@ spring:
     show-sql: false
 
   datasource:
-    url: ${DATASORCE_URL}
-    username: ${DATASORCE_USER}
-    password: ${DATASORCE_PWD}
+    url: jdbc:postgresql://172.16.238.10:5432/clinica
+    username: postgres
+    password: postgres
+    driverClassName: org.postgresql.Driver
 
+  rabbitmq:
+    host: 172.16.238.12
+    port: 5672
+    username: admin
+    password: admin

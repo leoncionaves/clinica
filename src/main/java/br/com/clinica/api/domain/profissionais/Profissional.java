@@ -1,9 +1,9 @@
 package br.com.clinica.api.domain.profissionais;
 
-import br.com.clinica.api.domain.especialidade.Especialidade;
 import br.com.clinica.api.domain.pessoa.Pessoa;
 import br.com.clinica.api.domain.profissionais.DTOs.DadosAtualizacaoProfissional;
 import br.com.clinica.api.domain.profissionais.DTOs.DadosCadastroProfissional;
+import br.com.clinica.api.domain.profissionais.especialidade.Especialidade;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;

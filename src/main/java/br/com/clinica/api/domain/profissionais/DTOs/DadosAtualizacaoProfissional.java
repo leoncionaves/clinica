@@ -1,7 +1,7 @@
 package br.com.clinica.api.domain.profissionais.DTOs;
 
-import br.com.clinica.api.domain.especialidade.Especialidade;
 import br.com.clinica.api.domain.pessoa.PessoaDTO;
+import br.com.clinica.api.domain.profissionais.especialidade.Especialidade;
 
 public record DadosAtualizacaoProfissional(
 
